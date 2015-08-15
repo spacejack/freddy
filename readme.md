@@ -2,4 +2,4 @@
 
 &copy; by Mike Linkovich &bull; [www.spacejack.ca](http://www.spacejack.ca)
 
-### [&raquo; Launch Freddy](https://spacejack.github.io/freddy/)
+### [&raquo; Launch Freddy](https://freddy.spacejack.ca/)
