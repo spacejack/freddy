@@ -1,0 +1,19 @@
+{
+    "rules": {
+        "semi": 0,
+		"quotes": 0,
+		"strict": 0,
+        "no-console": 0,
+        "space-infix-ops": 0,
+        "curly": 0,
+        "indent": [1, "tab"],
+        "new-cap": 0,
+        "key-spacing": 0
+    },
+    "env": {
+        "browser": true
+    },
+    "globals": {
+        "window": true
+    }
+}

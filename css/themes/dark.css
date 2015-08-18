@@ -1,0 +1,171 @@
+body {
+	color: #CCC;
+	background: #333;
+}
+
+html {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+}
+
+button,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+}
+
+select {
+	color: #DDD;
+	background: #2C2C2C;
+	border-color: #888;
+}
+
+button
+{
+	color: #DDD;
+	background: #2C2C2C;
+	border-color: #888;
+}
+button:hover
+{
+	color: #EEE;
+	background: #555;
+}
+button:disabled
+{
+	background: rgba(0,0,0,0.25);
+	color: rgba(0.5,0.5,0.5,0.5);
+}
+
+input[type=text] {
+	color: #EEE;
+	background: rgba(255,255,255,0.05);
+	border-color: #666;
+}
+
+a {
+	color: #ACD;
+}
+
+hr {
+	background-color: #999;
+}
+
+pre {
+	background: #303030;
+}
+
+code {
+	color: #6DA;
+}
+
+/*** Styles *********************************************************/
+
+.color_link {
+	color: #ACD;
+}
+
+.ico_arrow_left {
+	border-right: 0.5em solid #999;
+}
+
+.ico_arrow_right {
+	border-left: 0.5em solid #999;
+}
+
+.btn_arrow {
+	background: #333;
+}
+.btn_arrow:hover {
+	color: #DDD;
+	background: #222;
+}
+.btn_arrow_press {
+	color: #DDD;
+	background: #222;
+}
+
+.btn_menu {
+	background: #333;
+}
+.btn_menu:hover {
+	color: #DDD;
+	background: #222;
+}
+.btn_menu_press {
+	color: #DDD;
+	background: #222;
+}
+
+.feed_panel {
+	background: #333;
+}
+
+.article_panel {
+	background: #333;
+}
+
+.panel_head {
+	background: #444;
+	color: #BBB;
+}
+
+.item:not(:first-child) {
+	border-top: #999 solid 1px;
+}
+
+.item_left_press {
+	background: #404040;
+	color: #DDD;
+}
+
+.item_right {
+	background: #333C44;
+}
+.item_right_press {
+	background: #334455;
+	color: #DDD;
+}
+
+.feed_loadmore_block {
+	background: #303030;
+}
+
+.subreddit_item:not(:first-child) {
+	border-top: #999 solid 1px;
+}
+/*.subreddit_item:hover {
+	background: #3A3A3A;
+}*/
+.subreddit_item_press {
+	background: #3A3A3A;
+}
+.subreddit_item_delete {
+	background: #282828;
+}
+.subreddit_item_delete:hover {
+	background: #222;
+}
+.subreddit_item_delete_press {
+	background: #222;
+}
+
+.article_block {
+	background: #303030;
+	border: #888 solid 1px;
+}
+
+.article_comment_body {
+	border-left: #555 solid 2px;
+	border-bottom: #555 solid 1px;
+}
+
+.menu_items {
+	background: #333;
+}
+.menu_item:not(:first-child) {
+	border-top: #555 solid 1px;
+}
+.menu_item:hover {
+	background: #222;
+}

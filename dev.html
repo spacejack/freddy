@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+<!--
+Copyright (c) 2015 by Mike Linkovich
+http://www.spacejack.ca/
+-->
+	<meta name="viewport" content="width=device-width,initial-scale=1"/>
+	<meta name="mobile-web-app-capable" content="yes"/>
+	<meta name="apple-mobile-web-app-capable" content="yes"/>
+	<meta id="meta_theme_color" name="theme-color" content="#444444"/>
+	<meta id="meta_ios_theme_color" name="apple-mobile-web-app-status-bar-style" content="black"/>
+
+	<meta property="og:title" content="Freddy"/>
+	<meta property="og:description" content="A fast mobile Reddit reader"/>
+	<meta property="og:image" content="http://www.spacejack.ca/freddy/img/share.png"/>
+
+	<title>Freddy</title>
+
+	<link rel="icon" sizes="192x192" href="img/icon-192.png"/>
+	<link rel="apple-touch-icon" sizes="192x192" href="img/icon-192.png"/>
+	<link type="text/css" rel="stylesheet" href="css/style.css" media="screen"/>
+
+	<script src="js/src/util/util.js"></script>
+	<script src="js/src/util/copy.js"></script>
+	<script src="js/src/util/browser.js"></script>
+	<script src="js/src/util/math.js"></script>
+	<script src="js/src/util/string.js"></script>
+	<script src="js/src/util/pointer.js"></script>
+	<script src="js/src/util/html.js"></script>
+	<script src="js/src/util/date.js"></script>
+	<script src="js/src/util/cookies.js"></script>
+	<script src="js/src/util/xhr.js"></script>
+	<script src="js/src/Rect.js"></script>
+	<script src="js/src/Anim.js"></script>
+	<script src="js/src/Swiper.js"></script>
+	<script src="js/src/Slider.js"></script>
+	<script src="js/src/Menu.js"></script>
+	<script src="js/src/Viewer.js"></script>
+	<script src="js/src/SubGroup.js"></script>
+	<script src="js/src/Article.js"></script>
+	<script src="js/src/Feed.js"></script>
+	<script src="js/src/PanelSet.js"></script>
+	<script src="js/src/Prefs.js"></script>
+	<script src="js/src/Router.js"></script>
+	<script src="js/src/Freddy.js"></script>
+	<script src="js/src/main.js"></script>
+</head>
+<body>
+
+<div id="container" class="container">
+
+	<div id="left_panel" class="panel left_panel">
+
+		<div id="left_panel_head" class="panel_head">
+			<div style="display:inline-block"><img src="img/logo.svg" class="logo_svg"/>Freddy</div>
+		</div>
+
+		<div id="left_panel_content" class="panel_content">
+			<div id="subreddit_block" class="subreddit_block">
+				<h2>Subreddits</h2>
+				<div id="subreddit_list" class="subreddit_list">
+				</div>
+				<hr/>
+				<div id="subreddit_add_block" style="margin-bottom:1em">
+					<h2>Add Subreddit:</h2>
+					<p>
+						<input id="txt_subreddit_add" class="txt_subreddit_add" type="text" maxlength="21"/>
+						<button id="btn_subreddit_add" style="margin-left:0.4em">Add</button>
+					</p>
+				</div>
+				<hr/>
+				<div id="options_block" class="options_block">
+					<h2>Options:</h2>
+					<p style="margin-bottom: 1em">
+						Theme:
+						<button id="btn_theme" style="margin-left: 0.4em">Default</button>
+					</p>
+					<p><input type="checkbox" id="chk_article_images" /> Show article images</p>
+					<p><input type="checkbox" id="chk_thumb_images" /> Show thumbnail images</p>
+					<p><input type="checkbox" id="chk_history" /> Use back button</p>
+					<p><input type="checkbox" id="chk_nsfw" /> Show NSFW content (18+)</p>
+					<p><input type="checkbox" id="chk_savecookie" /> Save options in cookie</p>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="right_panel" class="panel right_panel">
+
+		<div id="right_panel_head" class="panel_head">
+			<div style="display:inline-block;padding-left: 0.55em">Sidebar</div>
+		</div>
+
+		<div id="right_panel_content" class="panel_content" style="padding-right:20%">
+			<div style="padding:1em 0.4em 0em 1.5em">
+				<p><b>Freddy</b>. A fast Reddit reader.</p>
+				<p style="font-size:0.85em">&copy; 2015 by Mike Linkovich</p>
+				<p><a href="https://www.github.com/spacejack/freddy" target="_blank">Github Repo</a></p>
+				<p id="homescreen_note" style="font-size:0.75em">This app works better when you add it to your homescreen.</p>
+			</div>
+			<div id="feed_meta_block" style="padding:1em 0.4em 0em 1.5em">
+				<hr/>
+				<h2 id="feed_meta_name">{sub}</h2>
+				<p id="feed_meta_body" class="feed_meta_body"></p>
+			</div>
+		</div>
+
+	</div>
+
+	<div id="feed_panel" class="panel feed_panel" touch-action="none">
+
+		<div id="feed_panel_head" class="panel_head">
+			<div style="float:left;max-width:70%;overflow:hidden;white-space:nowrap">
+				<div id="btn_feed_l" class="btn_arrow clickable" style="margin-right:0.5em;" touch-action="none">&#9666;</div><div id="feed_title_text" style="display:inline-block">Frontpage</div>
+			</div>
+			<div style="float:right;text-align:right">
+				<div id="btn_feed_menu" class="btn_menu" touch-action="none">&middot;&middot;&middot;</div><div id="btn_feed_r" class="btn_arrow clickable" style="margin-left:0.25em" touch-action="none">&#9656;</div>
+			</div><br clear="all"/>
+		</div>
+
+		<div id="feed_panel_content" class="panel_content">
+		</div>
+
+	</div>
+
+	<div id="article_panel" class="panel article_panel" style="visibility:hidden" touch-action="none">
+
+		<div id="article_panel_head" class="panel_head">
+			<div id="btn_article_close" class="btn_arrow clickable" touch-action="none" style="margin-right:0.5em">&#9666;</div><div id="article_title_text" style="display:inline-block">Article comments</div>
+		</div>
+
+		<div id="article_loading" class="article_loading" style="display:none;">loading...</div>
+
+		<div id="article_panel_content" class="panel_content">
+
+			<div id="article_block" class="article_block">
+				<div id="article_image_block" class="article_image_block"></div>
+				<p id="article_title" class="article_title"></p>
+				<p id="article_info" class="article_info"></p>
+				<p id="article_body" class="article_body"></p>
+			</div>
+
+			<div id="article_comments" class="article_comments"></div>
+
+		</div>
+
+	</div>
+
+	<div id="menu_bg" class="menu_bg" style="display:none" touch-action="none">
+		<div id="menu_content" class="menu_content"></div>
+	</div>
+
+	<div id="viewer_bg" class="viewer_bg" style="display:none">
+		<div id="viewer_content" class="viewer_content" touch-action="none"></div>
+	</div>
+
+</div>
+
+</body>
+</html>
