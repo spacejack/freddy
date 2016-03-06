@@ -74,7 +74,7 @@ function Freddy() {
 				{name:'home', rx:/^\/home$/, go:gotoHome},
 				{name:'options', rx:/^\/options$/, go:gotoOptions},
 				{name:'sidebar', rx:/^\/sidebar$/, go:gotoSidebar},
-				{name:'article', rx:/^\/r\/[0-9A-Za-z\-_]+\/comments\/[0-9A-Za-z\-_]+\/[0-9A-Za-z\-_]+/, go:gotoArticle},
+				{name:'article', rx:/^\/r\/[0-9A-Za-z\-_]+\/comments\/[0-9A-Za-z\-_]+\/[\w\u00C0-\u017F\-]+/, go:gotoArticle},
 				{name:'feed', rx:/\/r\/[0-9A-Za-z\-_]+$/, go:gotoFeedUrl},
 				{name:'viewer', rx:/^\/viewer$/, go:function(){}}
 			],

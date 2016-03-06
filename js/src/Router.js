@@ -44,7 +44,7 @@ var Router = function Router(routes, opts) {
 	var MAX_ROUTE_LENGTH = 250  // url length sanity check
 
 	// Allowed pattern for routes
-	var ROUTE_SAFE_RX = /^[0-9A-Za-z_\-\/]*$/
+	var ROUTE_SAFE_RX = /^[\w\u00C0-\u017F\-\/]*$/
 
 	/**  Change options after Router instance was created. */
 	function setOptions( opts ) {
