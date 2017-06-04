@@ -49,4 +49,4 @@ There were fewer browser technology or incompatibility roadblocks than I thought
 
 Freddy started out as an low-level experiment with some sliding panels and scrollable content. It doesn't (yet) use any 3rd party libraries apart from the minifiers used by its build script. (You might think you see some jQuery in there, but it's actually just my own utility library that resembles jQuery element selectors.)
 
-Check the build directory and readme for details on building the minified app.
+Check the build directory and readme for details on building the minified app. Freddy was written using vanilla ES5 and CSS.
