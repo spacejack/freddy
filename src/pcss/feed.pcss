@@ -1,0 +1,103 @@
+/* Feed (center panel) ***********************************/
+
+.panel-feed {
+	background-color: $clr-bg;
+	box-shadow: 0 0 50px rgba(0,0,0,0.75);
+}
+
+.item-list {
+	animation-name: item-list-fade-in;
+	animation-duration: .3s;
+
+	& .item {
+		display: table;
+		width: 100%;
+
+		& .left {
+			display: table-cell;
+			padding: 0 0.5em 0.4em 0.5em;
+		}
+
+		& .right {
+			display: table-cell;
+			font-size: 1.125em;
+			font-weight: bold;
+			text-align: center;
+			vertical-align: bottom;
+			margin-right: 0.5em;
+			padding-bottom: 0.3em;
+			background-color: $clr-hotspot-bg;
+			width: 4em;
+			cursor: pointer;
+			user-select: none;
+
+			& p {
+				white-space: nowrap;
+			}
+		}
+		& .right:active {
+			background-color: $clr-hotspot-bg-active;
+			color: #DDD;
+		}
+
+		& .thumb {
+			float: left;
+			margin-right: 0.5em;
+			margin-top: 0.73em;
+			cursor: pointer;
+			width: 2.5em;
+			height: 2.5em;
+			transition: opacity .25s ease-in-out;
+			opacity: 0;
+		}
+		& .thumb.show {
+			opacity: 1;
+		}
+
+		& .title {
+			font-size: 1.2em;
+			font-weight: normal;
+			margin: 0.5em 0 0 0;
+			cursor: pointer;
+			user-select: none;
+		}
+		& .title:active {
+			background-color: $clr-bg-active;
+		}
+		& p.title > a:active {
+			color: $clr-link-active;
+		}
+
+		& .title.self > a {
+			color: $clr-fg;
+		}
+		& .title.self > a:active {
+			color: $clr-fg-active;
+		}
+
+		& .details {
+			font-size: 0.8em;
+			user-select: none;
+		}
+	}
+	& .item:not(:first-child) {
+		border-top: $clr-line solid 1px;
+	}
+}
+
+@keyframes item-list-fade-in {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+.loadmore-block {
+	text-align: center;
+	padding: 0.7em 0;
+	box-shadow: inset 0 0.5em 15px rgba(0,0,0,0.25);
+	user-select: none;
+	background-color: $clr-hotspot-bg;
+	cursor: pointer;
+}
+.loadmore-block:active {
+	background-color: $clr-hotspot-bg-active;
+}
