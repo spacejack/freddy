@@ -1,14 +1,17 @@
 import {baseUrl, isStandaloneIOS} from './browser'
 
+export function unescape (escapedHtml: string) {
+	const div = document.createElement('div')
+	div.innerHTML = escapedHtml
+	return div.childNodes[0].nodeValue || ''
+}
+
 /**
  * Prepare escaped HTML content for rendering
  */
 export function prepEscapedHtml (escapedHtml: string) {
-	// unescape
-	const div0 = document.createElement('div')
-	div0.innerHTML = escapedHtml
 	const div = document.createElement('div')
-	div.innerHTML = div0.childNodes[0].nodeValue || ''
+	div.innerHTML = unescape(escapedHtml)
 	const links = div.querySelectorAll('a')
 	for (let i = 0; i < links.length; ++i) {
 		const a = links[i]

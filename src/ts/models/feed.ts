@@ -2,7 +2,7 @@ import * as m from 'mithril'
 import * as stream from 'mithril/stream'
 import {REDDIT_BASE_URL} from './reddit'
 import {screenSize} from '../lib/browser'
-import {prepEscapedHtml} from '../lib/html'
+import {unescape, prepEscapedHtml} from '../lib/html'
 
 export const itemList = stream<ItemList|undefined>()
 export const about = stream<About|undefined>()
@@ -99,7 +99,7 @@ export function getItemImage(item: Reddit.Item): ItemImage | undefined {
 	const image = selectImgSize(imgs, screenSize.width, screenSize.height)
 	return image
 		? {
-			url: image.url, width: image.width, height: image.height
+			url: unescape(image.url), width: image.width, height: image.height
 		}
 		: undefined
 }

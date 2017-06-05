@@ -11,24 +11,20 @@
 	transition: opacity .25s;
 
 	& .content {
-		position: relative;
+		position: absolute;
 		left: 0;
 		top: 0;
 		width: 100%;
 		height: 100%;
+		background-repeat: no-repeat;
+		background-size: contain;
+		background-position: center;
 		cursor: pointer;
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-
-		& .image {
-			opacity: 0;
-			transition: opacity 0.25s;
-		}
-		& .image.show {
-			opacity: 1;
-		}
+		opacity: 0;
+		transition: opacity 0.25s;
+	}
+	& .content.show {
+		opacity: 1;
 	}
 }
 
