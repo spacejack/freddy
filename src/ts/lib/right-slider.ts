@@ -9,7 +9,7 @@ export const RIGHT  =  1
 
 export type Layouts = 0 | 1
 
-const DURATION = 370
+const DURATION = 340
 const MAX_SLIDE = 1.05
 
 let dragger: Dragger | undefined
@@ -144,19 +144,19 @@ function ondragmove (dx: number) {
 function ondragend (dx: number, vx: number) {
 	// Check if we passed threshold to change panel position,
 	// weighted by speed of drag.
-	let weight = vx / panelWidth
 	const xs = dx / maxTravelX + curLayout
+	let weight = vx / panelWidth
 	let end = curLayout
 	let isChanging = false
-	if (Math.abs(dx + weight * 40) > maxTravelX / 2.0) {
+	if (Math.abs(dx + weight * panelWidth * 0.2) > maxTravelX / 2.0) {
 		// Threshold exceeded - animate to new layout
-		const direction = sign(dx + weight)
+		const direction = sign(dx + weight * 50.0)
 		end = clamp(curLayout + direction, 0, RIGHT) as Layouts
 		isChanging = true
 	} else {
 		weight = 0
 	}
-	animateToLayout(xs, end, Math.abs(weight)).then(lyo => {
+	animateToLayout(xs, end, Math.abs(weight * 0.25)).then(lyo => {
 		if (isChanging && onchangeCB) {
 			onchangeCB(lyo)
 		}
