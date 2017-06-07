@@ -15,10 +15,10 @@ function render (about: About | undefined) {
 				m('p',
 					m('a', isStandaloneIOS
 						? {
-							href: 'https://github.com/spacejack/freddy-mithril'
+							href: 'https://github.com/spacejack/freddy'
 						}
 						: {
-							href: 'https://github.com/spacejack/freddy-mithril',
+							href: 'https://github.com/spacejack/freddy',
 							target: '_blank',
 							rel: "noopener"
 						},
