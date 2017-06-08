@@ -2,7 +2,7 @@ import * as m from 'mithril'
 import {getPref, setPref} from '../../models/options'
 
 export default function render (name: string, label: string) {
-	return [
+	return m('p',
 		m('input',
 			{
 				type: 'checkbox',
@@ -16,5 +16,5 @@ export default function render (name: string, label: string) {
 			}
 		),
 		m('span', " " + label)
-	]
+	)
 }

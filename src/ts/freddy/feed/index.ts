@@ -11,17 +11,15 @@ function render (
 	list: ItemList | undefined, subreddit: string, title: string,
 	prefs: Preferences
 ) {
-	return (
-		m('.panel.panel-feed',
-			renderHead(subreddit, title),
-			m('.panel-content',
-				list
-					? [
-						m('.item-list', renderItemList(list.items, prefs)),
-						list.after && renderLoadMore(list.after)
-					]
-					: m('.content-loading', "loading...")
-			)
+	return m('.panel.panel-feed',
+		renderHead(subreddit, title),
+		m('.panel-content',
+			list
+				? [
+					m('.item-list', renderItemList(list.items, prefs)),
+					list.after && renderLoadMore(list.after)
+				]
+				: m('.content-loading', "loading...")
 		)
 	)
 }

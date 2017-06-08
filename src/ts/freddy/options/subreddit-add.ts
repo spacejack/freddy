@@ -14,34 +14,32 @@ export default {
 	},
 
 	view () {
-		return (
-			m('.subreddit-add-block',
-				m('h2', "Add Subreddit:"),
-				m('p',
-					m('input',
-						{
-							class: 'txt-subreddit-add',
-							type: 'text',
-							maxlength: '21',
-							oninput: (e: UIEvent & {redraw?: boolean}) => {
-								this.newSub((e.currentTarget as HTMLInputElement).value)
-								e.redraw = false
-							},
-							value: this.newSub()
-						}
-					),
-					m('button',
-						{
-							style: {marginLeft: '0.4em'},
-							onclick: () => {
-								addSubreddit(this.newSub())
-								this.newSub('')
-							}
+		return m('.subreddit-add-block',
+			m('h2', "Add Subreddit:"),
+			m('p',
+				m('input',
+					{
+						class: 'txt-subreddit-add',
+						type: 'text',
+						maxlength: '21',
+						oninput: (e: UIEvent & {redraw?: boolean}) => {
+							this.newSub((e.currentTarget as HTMLInputElement).value)
+							e.redraw = false
 						},
-						"Add"
-					)
+						value: this.newSub()
+					}
+				),
+				m('button',
+					{
+						style: {marginLeft: '0.4em'},
+						onclick: () => {
+							addSubreddit(this.newSub())
+							this.newSub('')
+						}
+					},
+					"Add"
 				)
 			)
 		)
-	}
+}
 } as m.Comp<{},State>

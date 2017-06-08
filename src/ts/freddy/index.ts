@@ -13,16 +13,14 @@ export interface Attrs {
 
 export default {
 	view ({attrs: {menuOpen, viewerOpen}}) {
-		return (
-			m('.freddy',
-				optionsView(),
-				sidebarView(),
-				feedView(),
-				articleView(),
-				viewerOpen && m(viewer),
-				menuOpen && m(menu),
-				m('.logger')
-			)
+		return m('.freddy',
+			optionsView(),
+			sidebarView(),
+			feedView(),
+			articleView(),
+			viewerOpen && m(viewer),
+			menuOpen && m(menu),
+			m('.logger')
 		)
 	}
 } as m.Component<Attrs,{}>

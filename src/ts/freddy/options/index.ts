@@ -15,6 +15,7 @@ function render (prefs: Preferences, subreddits: string[]) {
 		),
 		m('.panel-content',
 			m('.options-content',
+				m('h2', "Subreddits"),
 				renderSubredditList(subreddits),
 				m('hr'),
 				m(subredditAdd),
@@ -40,9 +41,9 @@ function render (prefs: Preferences, subreddits: string[]) {
 							},
 							"Default"
 						),
-						m('p', renderPrefCheck('articleThumbs', "Show article images")),
-						m('p', renderPrefCheck('feedThumbs', "Show thumbnail images")),
-						m('p', renderPrefCheck('nsfw', "Show NSFW content (18+)"))
+						renderPrefCheck('articleThumbs', "Show article images"),
+						renderPrefCheck('feedThumbs', "Show thumbnail images"),
+						renderPrefCheck('nsfw', "Show NSFW content (18+)")
 					),
 					m('hr'),
 					m('p',
