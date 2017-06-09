@@ -1,6 +1,7 @@
 import * as m from 'mithril'
 import menuContent from '../../models/menu'
 import {options, THEMES, Preferences, reset as resetOptions} from '../../models/options'
+import logo from '../logo'
 import renderSubredditList from './subreddit-list'
 import subredditAdd from './subreddit-add'
 import renderPrefCheck from './pref-check'
@@ -9,7 +10,7 @@ function render (prefs: Preferences, subreddits: string[]) {
 	return m('.panel.panel-options',
 		m('.panel-head',
 			m('div', {style: {display: 'inlineBlock'}},
-				m('img', {src: 'img/logo.svg', class: 'svg-logo'}),
+				logo,
 				m('span', "Freddy")
 			)
 		),
