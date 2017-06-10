@@ -1,0 +1,153 @@
+/* Reset *************************************************/
+
+html, body {
+	height: 100%;
+}
+
+body, select, input, button {
+	font-family: helvetica,arial,sans-serif;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	color: $clr-fg;
+	background-color: $clr-bg;
+	font-size: 16px;
+}
+
+html {
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-text-size-adjust: none;
+	-ms-text-size-adjust: none;
+}
+
+button,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: $clr-edit-bg-active;
+}
+
+select {
+	font-size: 1em;
+	color: $clr-ctrl-fg;
+	background-color: $clr-ctrl-bg;
+	border-color: $clr-ctrl-border;
+	padding: 0.5em;
+	margin: 0;
+}
+select:disabled {
+	cursor: default;
+	color: $clr-ctrl-fg-disabled;
+	background-color: $clr-ctrl-bg-disabled;
+}
+
+button {
+	font-size: 1em;
+	color: $clr-ctrl-fg;
+	background-color: $clr-ctrl-bg;
+	border-color: $clr-ctrl-border;
+	border-width: 1px;
+	border-style: solid;
+	padding: 0.5em 1.5em;
+	margin: 0;
+	cursor: pointer;
+}
+/* firefox specialness */
+button::-moz-focus-inner {
+    border:0;
+    padding:0;
+}
+button:active {
+	color: $clr-ctrl-fg-active;
+	background-color: $clr-ctrl-bg-active;
+}
+button:disabled {
+	cursor: default;
+	color: $clr-ctrl-fg-disabled;
+	background-color: $clr-ctrl-bg-disabled;
+}
+
+input[type=text] {
+	font-size: 1.2em;
+	margin: 0;
+	padding: 0.2em;
+	color: #EEE;
+	background-color: rgba(255,255,255,0.05);
+	border-color: #666;
+	border-width: 1px;
+}
+
+input[type=checkbox] {
+	display: inline-block;
+	transform: scale(1.8, 1.8);
+	padding: 0;
+	margin: 0.9em 1em 0.5em 0.9em;
+}
+
+a {
+	text-decoration: none;
+	color: $clr-link;
+}
+
+p {
+	margin: 0.4em 0 0.2em 0;
+}
+
+blockquote {
+	margin: 0.1em 0 0 0.7em;
+	padding: 0;
+	font-style: italic;
+	font-size: 0.95em;
+}
+
+ul, ol {
+	margin: 0 0 0 1em;
+	padding: 0;
+}
+li {
+	margin: 0.05em 0 0.05em 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 1.5em;
+	font-weight: bold;
+	user-select: none;
+	cursor: default;
+}
+h2 {
+	font-size: 1.3em;
+	font-weight: bold;
+	user-select: none;
+}
+h3 {
+	font-size: 1.2em;
+	font-weight: bold;
+}
+h4 {
+	font-size: 1.1em;
+	font-weight: normal;
+}
+
+hr {
+    border: none;
+    height: 1px;
+	background-color: $clr-line;
+	margin: 0;
+	padding: 0;
+}
+
+pre {
+	background-color: $clr-code-bg;
+	padding: 0.35em 0.5em;
+	margin: 0.1em 0.5em 0.1em 0;
+	overflow-x: auto;
+}
+
+code {
+	font-family: consolas,monospace;
+	font-size: 0.875em;
+	color: $clr-code-fg;
+}
