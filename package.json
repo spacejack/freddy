@@ -17,7 +17,7 @@
     "compile": "npm-run-all compile-ts compile-pcss",
     "build": "npm-run-all build-ts build-pcss",
     "dist": "npm run build && node scripts/dist",
-    "clean": "rm -f public/js/freddy.js public/css/freddy.css dist/index.html && rmdir dist",
+    "clean": "rm -f public/js/freddy.js public/css/freddy.css && rm -fr dist",
     "serve": "budo src/ts/main.ts:js/freddy.js -p 3000 --dir public --live=*.{html,css} -- --debug -p [ browserify-hmr ] -p [ tsify --project src/ts/tsconfig.json ]",
     "start": "npm-run-all -p watch-pcss serve"
   },
