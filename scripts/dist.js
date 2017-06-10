@@ -9,14 +9,14 @@ const html = fs.readFileSync(src + '/index.html').toString()
 const js = fs.readFileSync(src + '/js/freddy.js').toString()
 const css = fs.readFileSync(src + '/css/freddy.css').toString()
 
-const dst = path.resolve(__dirname, '../baked')
+const dst = path.resolve(__dirname, '../dist')
 
 if (!fs.existsSync(dst)) {
 	fs.mkdirSync(dst)
-	console.log("Created directory 'baked'")
+	console.log("Created directory 'dist'")
 }
 
-const baked = html.replace(
+const dist = html.replace(
 	'<link rel="stylesheet" type="text/css" href="css/freddy.css"/>',
 	`<style>${css}</style>`
 ).replace(
@@ -24,8 +24,8 @@ const baked = html.replace(
 	`<script>${js}</script>`
 )
 
-fs.writeFileSync(dst + '/index.html', baked, {encoding: 'utf8'})
+fs.writeFileSync(dst + '/index.html', dist, {encoding: 'utf8'})
 
-console.log('Wrote baked/index.html')
+console.log('Wrote dist/index.html')
 
 process.exit()

@@ -16,8 +16,8 @@
     "build-pcss": "postcss src/pcss/index.pcss --no-map --use postcss-import postcss-simple-vars postcss-nesting autoprefixer postcss-clean -o public/css/freddy.css",
     "compile": "npm-run-all compile-ts compile-pcss",
     "build": "npm-run-all build-ts build-pcss",
-    "bake": "npm run build && node scripts/bake",
-    "clean": "rm -f public/js/freddy.js public/css/freddy.css",
+    "dist": "npm run build && node scripts/dist",
+    "clean": "rm -f public/js/freddy.js public/css/freddy.css dist/index.html && rmdir dist",
     "serve": "budo src/ts/main.ts:js/freddy.js -p 3000 --dir public --live=*.{html,css} -- --debug -p [ browserify-hmr ] -p [ tsify --project src/ts/tsconfig.json ]",
     "start": "npm-run-all -p watch-pcss serve"
   },
