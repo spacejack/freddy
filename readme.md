@@ -24,9 +24,17 @@ Freddy uses [Mithril.js](https://mithril.js.org/) and is written in Typescript.
 
 Then go to http://localhost:3000 in your browser.
 
-## Build:
+## Build minified JS & CSS files:
 
 	npm run build
+
+Outputs to `public/`
+
+## Build all-in-one index.html distribution file:
+
+	npm run dist
+
+Outputs to `dist/index.html`
 
 ## Clean:
 
