@@ -2,6 +2,8 @@
 
 Freddy is a mobile Reddit reader web app designed to run fast and smooth like a native app. It supports modern browsers only.
 
+### > [Launch Freddy](https://freddy.spacejack.ca/)
+
 *Freddy works better when added to the homescreen. On iOS this will prevent swipe gestures from triggering browser forward/back navigation.*
 
 Freddy uses [Mithril.js](https://mithril.js.org/) and is written in Typescript.
