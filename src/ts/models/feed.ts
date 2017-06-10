@@ -4,12 +4,12 @@ import {REDDIT_BASE_URL} from './reddit'
 import {screenSize} from '../lib/browser'
 import {unescape, prepEscapedHtml} from '../lib/html'
 
-export const itemList = stream<ItemList|undefined>()
-export const about = stream<About|undefined>()
+export const itemList = stream<ItemList|undefined>(undefined)
+export const about = stream<About|undefined>(undefined)
 export const order = stream('')
-export const title = stream<string>()
-export const subreddit = stream<string>()
-export const sortby = stream<string|undefined>()
+export const title = stream<string>('')
+export const subreddit = stream<string>('')
+export const sortby = stream<string|undefined>(undefined)
 
 export interface ItemImage {
 	url: string
