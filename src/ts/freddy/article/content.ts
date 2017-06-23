@@ -22,8 +22,21 @@ export default function render (article: Article, prefs: Preferences) {
 					)
 			),
 			m('p.info',
-				`${article.domain} [+${article.score}] /r/${article.subreddit} ` +
-				`${age(time - article.created_utc)} by ${article.author}`
+				`${article.domain} [+${article.score}] `,
+				m('a',
+					{
+						href: `/r/${article.subreddit}`,
+						onclick: (e: Event & {redraw?: boolean}) => {
+							e.preventDefault()
+							e.redraw = false
+							m.route.set(
+								`/r/${article.subreddit}`, undefined, {replace: true}
+							)
+						}
+					},
+					`/r/${article.subreddit}`
+				),
+				` ${age(time - article.created_utc)} by ${article.author}`
 			),
 			article.body && m('p.body', article.body)
 		),
