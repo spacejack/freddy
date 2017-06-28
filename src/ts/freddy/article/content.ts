@@ -40,6 +40,6 @@ export default function render (article: Article, prefs: Preferences) {
 			),
 			article.body && m('p.body', article.body)
 		),
-		renderComments(article.comments)
+		renderComments(article.comments, time)
 	)
 }

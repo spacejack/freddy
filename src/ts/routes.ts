@@ -2,31 +2,29 @@ import * as m from 'mithril'
 import {load as loadFeed} from './models/feed'
 import {load as loadArticle} from './models/article'
 import freddy from './freddy'
-import {
-	setLayout as setMainLayout, LEFT, CENTER, RIGHT
-} from './lib/panel3slider'
-import {setLayout as setArticleLayout} from './lib/right-slider'
+import {default as slider, LEFT, CENTER, RIGHT} from './lib/slider'
+import slider3 from './lib/slider3'
 
 /** App routes */
 export default {
 	'/': {
 		onmatch() {
-			loadFeed('Frontpage', undefined, setMainLayout(CENTER))
-			setArticleLayout(RIGHT)
+			loadFeed('Frontpage', undefined, slider3.setLayout(CENTER))
+			slider.setLayout(RIGHT)
 			return freddy
 		}
 	},
 	'/options': {
 		onmatch() {
-			setMainLayout(RIGHT)
-			setArticleLayout(RIGHT)
+			slider3.setLayout(RIGHT)
+			slider.setLayout(RIGHT)
 			return freddy
 		}
 	},
 	'/sidebar': {
 		onmatch() {
-			setMainLayout(LEFT)
-			setArticleLayout(RIGHT)
+			slider3.setLayout(LEFT)
+			slider.setLayout(RIGHT)
 			return freddy
 		}
 	},
@@ -42,15 +40,15 @@ export default {
 	},
 	'/r/:subreddit': {
 		onmatch(attrs) {
-			loadFeed(attrs.subreddit, undefined, setMainLayout(CENTER))
-			setArticleLayout(RIGHT)
+			loadFeed(attrs.subreddit, undefined, slider3.setLayout(CENTER))
+			slider.setLayout(RIGHT)
 			return freddy
 		}
 	} as m.RouteResolver<{subreddit: string},{}>,
 	'/r/:subreddit/:sortby': {
 		onmatch(attrs) {
-			loadFeed(attrs.subreddit, attrs.sortby, setMainLayout(CENTER))
-			setArticleLayout(RIGHT)
+			loadFeed(attrs.subreddit, attrs.sortby, slider3.setLayout(CENTER))
+			slider.setLayout(RIGHT)
 			return freddy
 		}
 	} as m.RouteResolver<{subreddit: string, sortby: string},{}>,
@@ -58,7 +56,7 @@ export default {
 		onmatch(attrs) {
 			loadArticle(
 				`/r/${attrs.subreddit}/comments/${attrs.postid}/${attrs.slug}`,
-				setArticleLayout(CENTER)
+				slider.setLayout(CENTER)
 			)
 			return freddy
 		}
@@ -67,7 +65,7 @@ export default {
 		onmatch(attrs) {
 			loadArticle(
 				`/r/${attrs.subreddit}/comments/${attrs.postid}/${attrs.slug}/${attrs.comment}`,
-				setArticleLayout(CENTER)
+				slider.setLayout(CENTER)
 			)
 			return freddy
 		}

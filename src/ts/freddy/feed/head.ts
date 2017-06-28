@@ -1,5 +1,6 @@
 import * as m from 'mithril'
-import {getLayout, CENTER} from '../../lib/panel3slider'
+import {CENTER} from '../../lib/slider'
+import slider3 from '../../lib/slider3'
 import renderMenuSort from './menu-sort'
 
 export default function render (subreddit: string, title: string) {
@@ -17,7 +18,7 @@ export default function render (subreddit: string, title: string) {
 					style: {marginRight: '0.5em'},
 					onclick: (e: Event & {redraw?: false}) => {
 						e.redraw = false
-						if (getLayout() === CENTER) {
+						if (slider3.getLayout() === CENTER) {
 							m.route.set('/options')
 						} else {
 							window.history.back()
@@ -37,7 +38,7 @@ export default function render (subreddit: string, title: string) {
 					style: {marginLeft: '0.25em'},
 					onclick: (e: Event & {redraw?: false}) => {
 						e.redraw = false
-						if (getLayout() === CENTER) {
+						if (slider3.getLayout() === CENTER) {
 							m.route.set('/sidebar')
 						} else {
 							window.history.back()
