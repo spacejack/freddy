@@ -17,8 +17,9 @@ function renderCommentTree (comment: Comment, time: number): m.Children {
 			m('.head',
 				m('span.author', comment.author),
 				m('span.meta',
-					` ${comment.score} points ${age(time - (+comment.created_utc))}` + (comment.edited ? '*' : ''),
-					comment.gilded && m('span.symbol', m.trust('&#10024;')),
+					` ${comment.score} points ${age(time - (+comment.created_utc))}`,
+					comment.edited && '*',
+					comment.gilded > 0 && m('span.symbol', m.trust('&#10024;')),
 					comment.controversiality > 0 && m('span.symbol', m.trust('&dagger;'))
 				)
 			),
