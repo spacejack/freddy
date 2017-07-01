@@ -90,7 +90,8 @@ export function addSubreddit (_sub: string) {
 }
 
 export function removeSubreddit (sub: string) {
-	const i = subreddits().findIndex(s => s.toLowerCase() === sub)
+	const subLc = sub.toLowerCase()
+	const i = subreddits().findIndex(s => s.toLowerCase() === subLc)
 	if (i < 0) {
 		console.warn("Subreddit '" + sub + "' not found")
 		return
