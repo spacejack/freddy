@@ -56,9 +56,11 @@
 		& .comment {
 			margin: 0.1em 0 0.1em 0.6em;
 
-			& > .head {
+			& .head {
 				margin-top: 0.4em;
 				font-size: 0.7em;
+				cursor: pointer;
+				user-select: none;
 
 				& .author {
 					font-weight: bold;
@@ -71,7 +73,13 @@
 				}
 			}
 
-			& > .body {
+			& .head:active {
+				& .author, & .meta {
+					background-color: $clr-bg-active;
+				}
+			}
+
+			& .body {
 				font-size: 0.85em;
 				padding-left: 0.5em;
 				padding-right: 0.1em;
@@ -79,6 +87,16 @@
 				border-left: $clr-border-soft solid 2px;
 				border-bottom: $clr-border-soft solid 1px;
 				margin-bottom: 0.6em;
+			}
+		}
+
+		& .comment.collapsed {
+			& .body {
+				display: none;
+			}
+
+			& .comment {
+				display: none;
 			}
 		}
 	}
