@@ -39,8 +39,8 @@
 				box-shadow: 10px 20px 20px rgba(0,0,0,0.25);
 
 				& .item {
-					color: $clr-ctrl-fg;
-					background-color: $clr-ctrl-bg;
+					color: var(--clr-ctrl-fg);
+					background-color: var(--clr-ctrl-bg);
 					padding: 0.5em 1em;
 					font-size: 1.2em;
 					font-weight: bold;
@@ -48,11 +48,11 @@
 					user-select: none;
 				}
 				& .item:not(:first-child) {
-					border-top: $clr-border-soft solid 1px;
+					border-top: var(--clr-border-soft) solid 1px;
 				}
 				& .item:active {
-					color: $clr-ctrl-fg-active;
-					background-color: $clr-ctrl-bg-active;
+					color: var(--clr-ctrl-fg-active);
+					background-color: var(--clr-ctrl-bg-active);
 				}
 			}
 		}

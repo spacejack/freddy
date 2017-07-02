@@ -95,7 +95,7 @@ export function getItemImage(item: Reddit.Item): ItemImage | undefined {
 		return undefined
 	}
 	const imgs = item.preview.images[0].resolutions
-	if (!imgs || imgs.length < 1) undefined
+	if (!imgs || imgs.length < 1) return undefined
 	const image = selectImgSize(imgs, screenSize.width, screenSize.height)
 	return image
 		? {
@@ -192,39 +192,39 @@ export function loadMore (after: string) {
 		REDDIT_BASE_URL + '/' + (order() ? order() : '') + '.json' :
 		REDDIT_BASE_URL + '/r/' + subreddit() + (order() ? '/' + order() : '') + '.json'
 	url += '?after=' + after
-	m.request<Reddit.Feed>({url, method: 'GET'}).then(appendData)
+	m.request<Reddit.Feed>({url, method: 'GET'}).then(appendItems)
 }
 
-function appendData (data: Reddit.Feed) {
+function appendItems (data: Reddit.Feed) {
 	// Add items that weren't already in the previous list of items
-	const l = itemList()
-	if (!l) throw new Error("Cannot appendData - no existing list")
-	const listOld = l.items
-	const listNew = data.data.children
-	for (let i = 0; i < listNew.length; ++i) {
-		const newItem = listNew[i]
-		if (!listOld.find(oldItem => oldItem.id === newItem.data.id)) {
-			listOld.push(parseItem(newItem.data))
+	const ilist = itemList()
+	if (!ilist) throw new Error("Cannot appendData - no existing list")
+	const itemsOld = ilist.items
+	const itemsNew = data.data.children
+	for (let i = 0; i < itemsNew.length; ++i) {
+		const newItem = itemsNew[i]
+		if (!itemsOld.find(oldItem => oldItem.id === newItem.data.id)) {
+			itemsOld.push(parseItem(newItem.data))
 		}
 	}
 	// Update the 'after' token
-	l.after = data.data.after
-	itemList(l)
+	ilist.after = data.data.after
+	itemList(ilist)
 }
 
 /**
  * Given a subreddit name, construct Reddit API URLs
  */
-function makeSubredditUrls (subreddit: string, ord?: string) {
-	const urls = {
-		feed: undefined as any as string,
-		about: undefined as string | undefined
-	}
-	if (subreddit.toLowerCase() === 'frontpage') {
-		urls.feed = REDDIT_BASE_URL + '/' + (ord ? ord : '') + '.json'
-	} else {
-		urls.feed = REDDIT_BASE_URL + '/r/' + subreddit + (ord ? '/' + ord : '') + '.json'
-		urls.about = REDDIT_BASE_URL + '/r/' + subreddit + '/about.json'
-	}
-	return urls
+function makeSubredditUrls (
+	subreddit: string, ord?: string
+): {feed: string, about: string | undefined} {
+	return subreddit.toLowerCase() === 'frontpage'
+		? {
+			feed: REDDIT_BASE_URL + '/' + (ord ? ord : '') + '.json',
+			about: undefined
+		}
+		: {
+			feed: REDDIT_BASE_URL + '/r/' + subreddit + (ord ? '/' + ord : '') + '.json',
+			about: REDDIT_BASE_URL + '/r/' + subreddit + '/about.json'
+		}
 }

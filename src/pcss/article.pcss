@@ -1,7 +1,7 @@
 /* Article panel *****************************************/
 
 .panel-article {
-	background-color: $clr-bg;
+	background-color: var(--clr-bg);
 	box-shadow: 0 0 50px rgba(0,0,0,0.5);
 	transform: translate3d(105%,0,0);
 }
@@ -13,8 +13,8 @@
 	& > .content-block {
 		padding: 0.5em 0.5em 0.25em 0.5em;
 		margin: 1em 0.5em 0.7em 0.5em;
-		background-color: $clr-article-bg;
-		border: $clr-border solid 1px;
+		background-color: var(--clr-article-bg);
+		border: var(--clr-border) solid 1px;
 		overflow: auto;
 
 		& > .title {
@@ -75,7 +75,7 @@
 
 			& .head:active {
 				& .author, & .meta {
-					background-color: $clr-bg-active;
+					background-color: var(--clr-bg-active);
 				}
 			}
 
@@ -84,8 +84,8 @@
 				padding-left: 0.5em;
 				padding-right: 0.1em;
 				padding-bottom: 0.2em;
-				border-left: $clr-border-soft solid 2px;
-				border-bottom: $clr-border-soft solid 1px;
+				border-left: var(--clr-border-soft) solid 2px;
+				border-bottom: var(--clr-border-soft) solid 1px;
 				margin-bottom: 0.6em;
 			}
 		}
