@@ -5,7 +5,9 @@ import {Item} from '../../models/feed'
 import {Preferences} from '../../models/options'
 import renderThumb from './thumb'
 
-export default function render (item: Item, time: number, prefs: Preferences) {
+export default function render (
+	subreddit: string, item: Item, time: number, prefs: Preferences
+) {
 	return m('.item', {key: item.id},
 		m('.left',
 			(prefs.feedThumbs && item.thumbnail) && renderThumb(item),
@@ -36,8 +38,14 @@ export default function render (item: Item, time: number, prefs: Preferences) {
 					)
 				),
 			m('p.details',
-				`(${item.domain}) ${item.score} points by ${item.author}` +
-				` in ${item.subreddit} ${age(time - item.created_utc)}`
+				item.subreddit.toLowerCase() === subreddit.toLowerCase()
+					? `(${item.domain}) ${item.score} points by ${item.author}` +
+						` ${age(time - item.created_utc)}`
+					: [
+						`(${item.domain}) ${item.score} points by ${item.author} in `,
+						m('a', {href: `/r/${item.subreddit}`, oncreate: m.route.link}, item.subreddit),
+						' ' + age(time - item.created_utc)
+					]
 			)
 		),
 		m('.right',

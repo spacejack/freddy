@@ -16,7 +16,7 @@ function render (
 		m('.panel-content',
 			list
 				? [
-					m('.item-list', renderItemList(list.items, prefs)),
+					m('.item-list', renderItemList(subreddit, list.items, prefs)),
 					list.after && renderLoadMore(list.after)
 				]
 				: m('.content-loading', "loading...")

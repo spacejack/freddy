@@ -1,5 +1,20 @@
 import {baseUrl, isStandaloneIOS} from './browser'
 
+/** Load a CSS file */
+export function loadCSS (href: string) {
+	let el = document.head.querySelector('link#theme-css') as HTMLLinkElement | null
+	if (el) {
+		if (el.href !== href) el.href = href
+	} else {
+		el = document.createElement('link')
+		el.id = 'theme-css'
+		el.rel = 'stylesheet'
+		el.type = 'text/css'
+		el.href = href
+		document.head.appendChild(el)
+	}
+}
+
 export function unescape (escapedHtml: string) {
 	const div = document.createElement('div')
 	div.innerHTML = escapedHtml

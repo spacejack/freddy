@@ -1,0 +1,41 @@
+/* Feed (center panel) ***********************************/
+
+.panel-feed {
+	background-color: var(--clr-bg);
+}
+
+.item-list {
+	& .item {
+		& .right {
+			background-color: var(--clr-hotspot-bg);
+		}
+		& .right:active {
+			color: var(--clr-hotspot-fg-active);
+			background-color: var(--clr-hotspot-bg-active);
+		}
+
+		& .title:active {
+			background-color: var(--clr-bg-active);
+		}
+		& p.title > a:active {
+			color: var(--clr-link-active);
+		}
+
+		& .title.self > a {
+			color: var(--clr-fg);
+		}
+		& .title.self > a:active {
+			color: var(--clr-fg-active);
+		}
+	}
+	& .item:not(:first-child) {
+		border-top-color: var(--clr-line);
+	}
+}
+
+.loadmore-block {
+	background-color: var(--clr-hotspot-bg);
+}
+.loadmore-block:active {
+	background-color: var(--clr-hotspot-bg-active);
+}

@@ -11,8 +11,6 @@ body, select, input, button {
 body {
 	margin: 0;
 	padding: 0;
-	color: var(--clr-fg);
-	background-color: var(--clr-bg);
 	font-size: 16px;
 }
 
@@ -26,28 +24,19 @@ button,
 input,
 select,
 textarea {
-    -webkit-tap-highlight-color: var(--clr-edit-bg-active);
 }
 
 select {
 	font-size: 1em;
-	color: var(--clr-ctrl-fg);
-	background-color: var(--clr-ctrl-bg);
-	border-color: var(--clr-ctrl-border);
 	padding: 0.5em;
 	margin: 0;
 }
 select:disabled {
 	cursor: default;
-	color: var(--clr-ctrl-fg-disabled);
-	background-color: var(--clr-ctrl-bg-disabled);
 }
 
 button {
 	font-size: 1em;
-	color: var(--clr-ctrl-fg);
-	background-color: var(--clr-ctrl-bg);
-	border-color: var(--clr-ctrl-border);
 	border-width: 1px;
 	border-style: solid;
 	padding: 0.5em 1.5em;
@@ -60,22 +49,16 @@ button::-moz-focus-inner {
     padding:0;
 }
 button:active {
-	color: var(--clr-ctrl-fg-active);
-	background-color: var(--clr-ctrl-bg-active);
 }
 button:disabled {
 	cursor: default;
-	color: var(--clr-ctrl-fg-disabled);
-	background-color: var(--clr-ctrl-bg-disabled);
 }
 
 input[type=text] {
 	font-size: 1.2em;
 	margin: 0;
 	padding: 0.2em;
-	color: #EEE;
 	background-color: rgba(255,255,255,0.05);
-	border-color: #666;
 	border-width: 1px;
 }
 
@@ -134,13 +117,11 @@ h4 {
 hr {
     border: none;
     height: 1px;
-	background-color: var(--clr-line);
 	margin: 0;
 	padding: 0;
 }
 
 pre {
-	background-color: var(--clr-code-bg);
 	padding: 0.35em 0.5em;
 	margin: 0.1em 0.5em 0.1em 0;
 	overflow-x: auto;
@@ -149,5 +130,4 @@ pre {
 code {
 	font-family: consolas,monospace;
 	font-size: 0.875em;
-	color: var(--clr-code-fg);
 }

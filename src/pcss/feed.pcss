@@ -1,7 +1,6 @@
 /* Feed (center panel) ***********************************/
 
 .panel-feed {
-	background-color: var(--clr-bg);
 	box-shadow: 0 0 50px rgba(0,0,0,0.75);
 }
 
@@ -26,7 +25,6 @@
 			vertical-align: bottom;
 			margin-right: 0.5em;
 			padding-bottom: 0.3em;
-			background-color: var(--clr-hotspot-bg);
 			width: 4em;
 			cursor: pointer;
 			user-select: none;
@@ -36,8 +34,6 @@
 			}
 		}
 		& .right:active {
-			background-color: var(--clr-hotspot-bg-active);
-			color: #DDD;
 		}
 
 		& .thumb {
@@ -62,17 +58,13 @@
 			user-select: none;
 		}
 		& .title:active {
-			background-color: var(--clr-bg-active);
 		}
 		& p.title > a:active {
-			color: var(--clr-link-active);
 		}
 
 		& .title.self > a {
-			color: var(--clr-fg);
 		}
 		& .title.self > a:active {
-			color: var(--clr-fg-active);
 		}
 
 		& .details {
@@ -81,7 +73,8 @@
 		}
 	}
 	& .item:not(:first-child) {
-		border-top: var(--clr-line) solid 1px;
+		border-top-style: solid;
+		border-top-width: 1px;
 	}
 }
 
@@ -95,9 +88,7 @@
 	padding: 0.7em 0;
 	box-shadow: inset 0 0.5em 15px rgba(0,0,0,0.25);
 	user-select: none;
-	background-color: var(--clr-hotspot-bg);
 	cursor: pointer;
 }
 .loadmore-block:active {
-	background-color: var(--clr-hotspot-bg-active);
 }

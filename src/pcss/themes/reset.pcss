@@ -1,0 +1,58 @@
+/* Reset *************************************************/
+
+body {
+	color: var(--clr-fg);
+	background-color: var(--clr-bg);
+}
+
+button,
+input,
+select,
+textarea {
+    -webkit-tap-highlight-color: var(--clr-edit-bg-active);
+}
+
+select {
+	color: var(--clr-ctrl-fg);
+	background-color: var(--clr-ctrl-bg);
+	border-color: var(--clr-ctrl-border);
+}
+select:disabled {
+	color: var(--clr-ctrl-fg-disabled);
+	background-color: var(--clr-ctrl-bg-disabled);
+}
+
+button {
+	color: var(--clr-ctrl-fg);
+	background-color: var(--clr-ctrl-bg);
+	border-color: var(--clr-ctrl-border);
+}
+button:active {
+	color: var(--clr-ctrl-fg-active);
+	background-color: var(--clr-ctrl-bg-active);
+}
+button:disabled {
+	color: var(--clr-ctrl-fg-disabled);
+	background-color: var(--clr-ctrl-bg-disabled);
+}
+
+input[type=text] {
+	color: var(--clr-ctrl-fg);
+	border-color: var(--clr-border-soft);
+}
+
+a {
+	color: var(--clr-link);
+}
+
+hr {
+	background-color: var(--clr-line);
+}
+
+pre {
+	background-color: var(--clr-code-bg);
+}
+
+code {
+	color: var(--clr-code-fg);
+}

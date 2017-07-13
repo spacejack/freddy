@@ -1,5 +1,6 @@
 import * as stream from 'mithril/stream'
 import {Stream} from 'mithril/stream'
+import {loadCSS} from '../lib/html'
 import {MAX_SUB_LENGTH, SUB_RX} from './reddit'
 
 export interface Theme {
@@ -14,10 +15,13 @@ export interface Preferences {
 	nsfw: boolean
 }
 
-export const THEMES: Theme[] = [{name: 'default', title: "Default"}]
+export const THEMES: Theme[] = [
+	{name: 'dark', title: "Dark"},
+	{name: 'light', title: "Light"}
+]
 
 const DEFAULT_PREFS: Preferences = {
-	theme: 'default',
+	theme: THEMES[0].name,
 	articleThumbs: true,
 	feedThumbs: true,
 	nsfw: false,
@@ -59,7 +63,12 @@ export function getPref (name: string) {
 }
 
 export function setPref (name: string, value: any) {
-	preferences(Object.assign({}, preferences(), {[name]: value}))
+	const prefs = preferences()
+	if (prefs[name] === value) return // no change
+	if (name === 'theme') {
+		loadCSS(`themes/${value}.css`)
+	}
+	preferences(Object.assign({}, prefs, {[name]: value}))
 	savePreferences()
 }
 
@@ -150,7 +159,7 @@ function loadPreferences() {
 	try {
 		prefs = JSON.parse(json)
 	} catch (e) {
-		console.warn("Error parsing saved subreddits")
+		console.warn("Error parsing preferences")
 		return
 	}
 	preferences({
@@ -160,6 +169,10 @@ function loadPreferences() {
 		theme: THEMES.some(t => t.name === prefs.theme)
 			? prefs.theme : THEMES[0].name
 	})
+	// Check if non-default theme is selected
+	if (preferences().theme !== THEMES[0].name) {
+		loadCSS(`themes/${preferences().theme}.css`)
+	}
 }
 
 function saveSubreddits() {

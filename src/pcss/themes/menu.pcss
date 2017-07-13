@@ -1,0 +1,25 @@
+/* Menu **************************************************/
+
+.menu {
+	background-color: var(--clr-menu-bg);
+
+	& .content {
+		color: var(--clr-menu-fg);
+
+		& .block {
+			& .items {
+				& .item {
+					color: var(--clr-ctrl-fg);
+					background-color: var(--clr-ctrl-bg);
+				}
+				& .item:not(:first-child) {
+					border-top-color: var(--clr-border-soft);
+				}
+				& .item:active {
+					color: var(--clr-ctrl-fg-active);
+					background-color: var(--clr-ctrl-bg-active);
+				}
+			}
+		}
+	}
+}

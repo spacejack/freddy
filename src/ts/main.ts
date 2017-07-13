@@ -53,11 +53,11 @@ function mountApp() {
 	})
 }
 
-// Setup fastclick
-fastClick(document.body)
-
 // Load user options from local storage
 loadOptions()
+
+// Setup fastclick
+fastClick(document.body)
 
 // If started in sidebar or options, redirect to home
 if (window.location.hash === '#!/options' || window.location.hash === '#!/sidebar') {

@@ -1,0 +1,26 @@
+/* Article panel *****************************************/
+
+.panel-article {
+	background-color: var(--clr-bg);
+}
+
+.article {
+	& .content-block {
+		background-color: var(--clr-article-bg);
+		border-color: var(--clr-border);
+	}
+	& .comments {
+		& .comment {
+			& .head:active {
+				& .author, & .meta {
+					background-color: var(--clr-bg-active);
+				}
+			}
+
+			& .body {
+				border-left-color: var(--clr-border-soft);
+				border-bottom-color: var(--clr-border-soft);
+			}
+		}
+	}
+}
