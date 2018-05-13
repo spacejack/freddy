@@ -75,18 +75,43 @@ const image: m.Component<{media: ItemImage}> = {
 }
 
 /** Renders video content */
-const video: m.Component<{media: ItemVideo}> = {
-	view ({attrs: {media}}) {
-		return m('video.video', {
-			src: media.url,
-			loop: true,
-			controls: true,
-			playsinline: true,
-			onclick: (e: MouseEvent & {redraw?: boolean}) => {
-				e.stopPropagation()
-				e.redraw = false
-				window.history.back()
-			}
-		})
+const video: m.FactoryComponent<{media: ItemVideo}> = function({attrs: {media}}) {
+	let el: HTMLVideoElement
+
+	function resize() {
+		// Find best fit size for video element
+		const rc = el.parentElement!.getBoundingClientRect()
+		const wider = media.width / media.height > rc.width / rc.height
+		el.style.width = wider ? '100%' : 'auto'
+		el.style.height = wider ? 'auto' : '100%'
+	}
+
+	return {
+		oncreate (vnode) {
+			el = vnode.dom as HTMLVideoElement
+			window.addEventListener('resize', resize)
+			resize()
+			// Fade in when video ready
+			el.addEventListener('canplay', () => {
+				el.classList.add('show')
+			})
+		},
+		onremove() {
+			window.removeEventListener('resize', resize)
+		},
+		view ({attrs: {media}}) {
+			return m('video.video', {
+				src: media.url,
+				autoplay: true,
+				controls: true,
+				loop: true,
+				playsinline: true,
+				onclick: (e: MouseEvent & {redraw?: boolean}) => {
+					e.stopPropagation()
+					e.redraw = false
+					window.history.back()
+				}
+			})
+		}
 	}
 }
