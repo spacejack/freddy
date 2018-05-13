@@ -4,7 +4,7 @@ import {isSecure} from '../lib/browser'
 import {prepEscapedHtml} from '../lib/html'
 import {roundFrac} from '../lib/math'
 import {Item, getItemImage} from './feed'
-import {REDDIT_BASE_URL} from './reddit'
+import * as Reddit from './reddit'
 
 export const THUMB_MAX_HEIGHT = 133
 export const THUMB_MAX_WIDTH = 200
@@ -135,7 +135,7 @@ export function load (url: string, p?: Promise<any>) {
 	if (currentUrl === url) return
 	currentUrl = url
 	article(undefined)
-	url = REDDIT_BASE_URL + url + '.json'
+	url = Reddit.BASE_URL + url + '.json'
 	m.request({
 		url,
 		extract: xhr => xhr.responseText,

@@ -1,6 +1,6 @@
 import * as m from 'mithril'
 import * as stream from 'mithril/stream'
-import {REDDIT_BASE_URL} from './reddit'
+import * as Reddit from './reddit'
 import {screenSize} from '../lib/browser'
 import {unescape, prepEscapedHtml} from '../lib/html'
 
@@ -189,8 +189,8 @@ export function loadMore (after: string) {
 		return
 	}
 	let url = (subreddit().toLowerCase() === 'frontpage') ?
-		REDDIT_BASE_URL + '/' + (order() ? order() : '') + '.json' :
-		REDDIT_BASE_URL + '/r/' + subreddit() + (order() ? '/' + order() : '') + '.json'
+		Reddit.BASE_URL + '/' + (order() ? order() : '') + '.json' :
+		Reddit.BASE_URL + '/r/' + subreddit() + (order() ? '/' + order() : '') + '.json'
 	url += '?after=' + after
 	m.request<Reddit.Feed>({url, method: 'GET'}).then(appendItems)
 }
@@ -220,11 +220,11 @@ function makeSubredditUrls (
 ): {feed: string, about: string | undefined} {
 	return subreddit.toLowerCase() === 'frontpage'
 		? {
-			feed: REDDIT_BASE_URL + '/' + (ord ? ord : '') + '.json',
+			feed: Reddit.BASE_URL + '/' + (ord ? ord : '') + '.json',
 			about: undefined
 		}
 		: {
-			feed: REDDIT_BASE_URL + '/r/' + subreddit + (ord ? '/' + ord : '') + '.json',
-			about: REDDIT_BASE_URL + '/r/' + subreddit + '/about.json'
+			feed: Reddit.BASE_URL + '/r/' + subreddit + (ord ? '/' + ord : '') + '.json',
+			about: Reddit.BASE_URL + '/r/' + subreddit + '/about.json'
 		}
 }
