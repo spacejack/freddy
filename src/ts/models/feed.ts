@@ -11,10 +11,19 @@ export const title = stream<string>('')
 export const subreddit = stream<string>('')
 export const sortby = stream<string|undefined>(undefined)
 
-export interface ItemImage {
+export interface ItemMedia {
+	type: 'image' | 'video'
 	url: string
 	width: number
 	height: number
+}
+
+export interface ItemImage extends ItemMedia {
+	type: 'image'
+}
+
+export interface ItemVideo extends ItemMedia {
+	type: 'video'
 }
 
 export interface Item {
@@ -31,7 +40,7 @@ export interface Item {
 	num_comments: number
 	over_18: boolean
 	thumbnail: string
-	image: ItemImage | undefined
+	media: ItemImage | ItemVideo | undefined
 }
 
 export interface ItemList {
@@ -62,7 +71,7 @@ function parseItem (ri: Reddit.Item) {
 		over_18: ri.over_18,
 		thumbnail: (ri.thumbnail && ri.thumbnail.startsWith('https://'))
 			? ri.thumbnail : '',
-		image: getItemImage(ri)
+		media: getItemMedia(ri)
 	}
 	return item
 }
@@ -89,8 +98,29 @@ function parseAbout (json: string) {
 	return about
 }
 
-/** Given an Item find the best image url to use (otherwise returns undefined) */
-export function getItemImage(item: Reddit.Item): ItemImage | undefined {
+/** Given a Reddit.Item return image or video media info (if available) */
+export function getItemMedia (item: Reddit.Item): ItemImage | ItemVideo | undefined {
+	return item.media && item.media.reddit_video != null
+		? getItemVideo(item)
+		: getItemImage(item)
+}
+
+/** Given a Reddit.Item get the hosted video info */
+function getItemVideo (item: Reddit.Item): ItemVideo | undefined {
+	if (!item.media || item.media.reddit_video == null) {
+		return undefined
+	}
+	const vid = item.media.reddit_video
+	return {
+		type: 'video',
+		url: vid.fallback_url,
+		width: vid.width,
+		height: vid.height
+	}
+}
+
+/** Given a Reddit.Item find the best image size to use (otherwise returns undefined) */
+function getItemImage (item: Reddit.Item): ItemImage | undefined {
 	if (!item.preview || !item.preview.images || item.preview.images.length < 1) {
 		return undefined
 	}
@@ -99,7 +129,8 @@ export function getItemImage(item: Reddit.Item): ItemImage | undefined {
 	const image = selectImgSize(imgs, screenSize.width, screenSize.height)
 	return image
 		? {
-			url: unescape(image.url), width: image.width, height: image.height
+			type: 'image', url: unescape(image.url),
+			width: image.width, height: image.height
 		}
 		: undefined
 }

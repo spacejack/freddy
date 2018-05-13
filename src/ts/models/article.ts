@@ -3,7 +3,7 @@ import * as stream from 'mithril/stream'
 import {isSecure} from '../lib/browser'
 import {prepEscapedHtml} from '../lib/html'
 import {roundFrac} from '../lib/math'
-import {Item, getItemImage} from './feed'
+import {Item, getItemMedia} from './feed'
 import * as Reddit from './reddit'
 
 export const THUMB_MAX_HEIGHT = 133
@@ -56,7 +56,7 @@ function parseArticle (json: any) {
 		num_comments: ra.num_comments,
 		over_18: ra.over_18,
 		thumbnail: ra.thumbnail,
-		image: getItemImage(ra),
+		media: getItemMedia(ra),
 		upvote_ratio: ra.upvote_ratio,
 		thumb: parseThumb(ra),
 		comments: rcs.map(rc => parseComment(rc.data))

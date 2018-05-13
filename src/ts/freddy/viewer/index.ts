@@ -1,70 +1,92 @@
 import * as m from 'mithril'
-import wait from '../../lib/wait'
+import {readyDom, transitionPromise} from '../../lib/html'
 import viewerItem from '../../models/viewer'
-
-interface State {
-	imgUrl: string
-}
+import {ItemImage, ItemVideo} from '../../models/feed'
 
 /**
- * This component is more complex than it othrwise might be because
- * we want to fade the image in after it loads, unfortunately we can't
- * use image onload events for background images.
+ * Fullscreen overlay with media content.
  */
-export default {
-	imgUrl: '',
+const viewer: m.FactoryComponent = function() {
+	let media: ItemImage | ItemVideo
 
-	oninit() {
-		const item = viewerItem()
-		if (!item || !item.image) {
-			console.warn("No item for viewer to display")
-			return
+	return {
+		oninit() {
+			const item = viewerItem()
+			if (!item || !item.media) {
+				console.warn("No item for viewer to display")
+				return
+			}
+			media = item.media
+		},
+
+		oncreate ({dom}) {
+			// Fade in bg
+			readyDom(dom)
+			dom.classList.add('show')
+		},
+
+		onbeforeremove ({dom}) {
+			// Fade out viewer (and contents) on close
+			dom.classList.remove('show')
+			return transitionPromise(dom)
+		},
+
+		view() {
+			return m('.viewer',
+				{
+					onclick: (e: MouseEvent & {redraw?: false}) => {
+						e.redraw = false
+						window.history.back()
+					}
+				},
+				media.type === 'image'
+					? m(image, {media})
+					: m(video, {media})
+			)
 		}
-		this.imgUrl = item.image.url
-	},
+	}
+}
 
-	oncreate ({dom}) {
+export default viewer
+
+/** Renders image content */
+const image: m.Component<{media: ItemImage}> = {
+	oncreate (vnode) {
 		// We can't detect when a background image loads, so load it in
-		// an image object to know when it loads.
+		// an image object to know when it's ready.
 		const img = new Image()
 		img.onload = () => {
 			// Fade in image that's displayed when loaded
-			dom.querySelector('.content')!.classList.add('show')
+			vnode.dom.classList.add('show')
 		}
-		img.src = this.imgUrl
-		// Fade in bg
-		wait(1).then(() => {dom.classList.add('show')})
+		img.src = vnode.attrs.media.url
 	},
-
-	onbeforeremove ({dom}) {
-		// Fade out viewer (and contents) on close
-		dom.classList.remove('show')
-		return new Promise(resolve => {
-			dom.addEventListener('transitionend', resolve)
-		})
-	},
-
-	view() {
-		return m('.viewer',
-			{
-				onclick: (e: MouseEvent & {redraw?: boolean}) => {
-					e.redraw = false
-					window.history.back()
-				}
+	view ({attrs: {media}}) {
+		return m('.image', {
+			touchAction: 'none',
+			onclick: (e: MouseEvent & {redraw?: boolean}) => {
+				e.stopPropagation()
+				e.redraw = false
+				window.history.back()
 			},
-			m('.content',
-				{
-					touchAction: 'none',
-					onclick: (e: MouseEvent & {redraw?: boolean}) => {
-						e.stopPropagation()
-						e.redraw = false
-						window.history.back()
-					},
-					style: {
-						backgroundImage: `url(${this.imgUrl})`
-					}
-				}
-			)
-		)
+			style: `background-image: url(${media.url})`
+		})
 	}
-} as m.Comp<{},State>
+}
+
+/** Renders video content */
+const video: m.Component<{media: ItemVideo}> = {
+	view ({attrs: {media}}) {
+		return m('video.video', {
+			src: media.url,
+			loop: true,
+			controls: true,
+			playsinline: true,
+			onclick: (e: MouseEvent & {redraw?: boolean}) => {
+				e.stopPropagation()
+				e.redraw = false
+				window.history.back()
+			}
+		})
+	}
+}

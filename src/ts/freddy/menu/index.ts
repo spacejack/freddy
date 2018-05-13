@@ -58,4 +58,4 @@ export default {
 			)
 		)
 	}
-} as m.Component<{},{}>
+} as m.Component

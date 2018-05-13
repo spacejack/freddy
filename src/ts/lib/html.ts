@@ -1,5 +1,23 @@
 import {baseUrl, isStandaloneIOS} from './browser'
 
+/**
+ * Ensures this DOM element is rendered and ready so that
+ * CSS animations can be applied.
+ */
+export function readyDom (el: Element) {
+	let temp = (el as HTMLElement).offsetHeight
+}
+
+/**
+ * Returns a Promise that resolves when the transitionend event
+ * fires for the supplied element.
+ */
+export function transitionPromise (el: Element) {
+	return new Promise(resolve => {
+		el.addEventListener('transitionend', resolve)
+	})
+}
+
 /** Load a CSS file */
 export function loadCSS (href: string) {
 	let el = document.head.querySelector('link#theme-css') as HTMLLinkElement | null

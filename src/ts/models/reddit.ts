@@ -21,7 +21,7 @@ export interface OEmbed {
 }
 
 export interface Media {
-	reddit_video?: Media
+	reddit_video?: RedditVideo
 	oembed?: OEmbed
 }
 
