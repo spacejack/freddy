@@ -1,13 +1,11 @@
-'use strict'
-
 const fs = require('fs-extra')
 const path = require('path')
 
 const src = path.resolve(__dirname, '../public')
 
-const html = fs.readFileSync(src + '/index.html').toString()
-const js = fs.readFileSync(src + '/freddy.js').toString()
-const css = fs.readFileSync(src + '/freddy.css').toString()
+const html = fs.readFileSync(src + '/index.html', {encoding: 'utf8'}).toString()
+const js = fs.readFileSync(src + '/freddy.js', {encoding: 'utf8'}).toString()
+const css = fs.readFileSync(src + '/freddy.css', {encoding: 'utf8'}).toString()
 
 const dst = path.resolve(__dirname, '../dist')
 

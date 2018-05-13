@@ -14,6 +14,7 @@
 .Trashes
 Thumbs.db
 
-/public/js/freddy.js
-/public/css/freddy.css
+/public/freddy.js
+/public/freddy.css
+/public/themes/*.css
 /dist

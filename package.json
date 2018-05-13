@@ -1,6 +1,6 @@
 {
   "name": "freddy",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Freddy - A fast mobile Reddit reader",
   "author": "spacejack",
   "license": "CC-BY-NC-4.0",
@@ -28,25 +28,25 @@
   },
   "devDependencies": {
     "@types/fastclick": "^1.0.28",
-    "@types/mithril": "^1.1.5",
-    "autoprefixer": "^7.1.1",
-    "browserify": "^14.4.0",
-    "browserify-hmr": "^0.3.5",
-    "budo": "^10.0.3",
-    "npm-run-all": "^4.0.2",
-    "postcss-clean": "^1.0.2",
-    "postcss-cli": "^4.1.0",
-    "postcss-color-function": "^4.0.0",
-    "postcss-custom-properties": "^6.1.0",
-    "postcss-import": "^10.0.0",
-    "postcss-nesting": "^4.0.1",
-    "tsify": "^3.0.1",
+    "@types/mithril": "^1.1.12",
+    "autoprefixer": "^8.5.0",
+    "browserify": "^16.2.2",
+    "browserify-hmr": "^0.3.6",
+    "budo": "^11.2.0",
+    "npm-run-all": "^4.1.3",
+    "postcss-clean": "^1.1.0",
+    "postcss-cli": "^5.0.0",
+    "postcss-color-function": "^4.0.1",
+    "postcss-custom-properties": "^7.0.0",
+    "postcss-import": "^11.1.0",
+    "postcss-nesting": "^5.0.0",
+    "tsify": "^4.0.0",
     "tslint": "4.5.1",
-    "typescript": "^2.4.1",
-    "uglify-js": "^3.0.23"
+    "typescript": "^2.8.3",
+    "uglify-js": "^3.3.25"
   },
   "dependencies": {
     "fastclick": "^1.0.6",
-    "mithril": "^1.1.1"
+    "mithril": "^1.1.6"
   }
 }
