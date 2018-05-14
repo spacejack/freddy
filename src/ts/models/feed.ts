@@ -129,8 +129,10 @@ function getItemImage (item: Reddit.Item): ItemImage | undefined {
 	const image = selectImgSize(imgs, screenSize.width, screenSize.height)
 	return image
 		? {
-			type: 'image', url: unescape(image.url),
-			width: image.width, height: image.height
+			type: 'image',
+			url: unescape(image.url),
+			width: image.width,
+			height: image.height
 		}
 		: undefined
 }

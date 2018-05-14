@@ -51,25 +51,19 @@ export default viewer
 
 /** Renders image content */
 const image: m.Component<{media: ItemImage}> = {
-	oncreate (vnode) {
-		// We can't detect when a background image loads, so load it in
-		// an image object to know when it's ready.
-		const img = new Image()
-		img.onload = () => {
-			// Fade in image that's displayed when loaded
-			vnode.dom.classList.add('show')
-		}
-		img.src = vnode.attrs.media.url
-	},
 	view ({attrs: {media}}) {
-		return m('.image', {
+		return m('img.image', {
+			src: media.url,
 			touchAction: 'none',
-			onclick: (e: MouseEvent & {redraw?: boolean}) => {
+			onload (e: Event & {redraw?: false}) {
+				(e.currentTarget as HTMLImageElement).classList.add('show')
+				e.redraw = false
+			},
+			onclick (e: MouseEvent & {redraw?: boolean}) {
 				e.stopPropagation()
 				e.redraw = false
 				window.history.back()
-			},
-			style: `background-image: url(${media.url})`
+			}
 		})
 	}
 }
@@ -77,11 +71,14 @@ const image: m.Component<{media: ItemImage}> = {
 /** Renders video content */
 const video: m.FactoryComponent<{media: ItemVideo}> = function({attrs: {media}}) {
 	let el: HTMLVideoElement
+	// Use reported size to start with
+	let width = media.width || 240
+	let height = media.height || 240
 
 	function resize() {
 		// Find best fit size for video element
 		const rc = el.parentElement!.getBoundingClientRect()
-		const wider = media.width / media.height > rc.width / rc.height
+		const wider = width / height > rc.width / rc.height
 		el.style.width = wider ? '100%' : 'auto'
 		el.style.height = wider ? 'auto' : '100%'
 	}
@@ -89,24 +86,28 @@ const video: m.FactoryComponent<{media: ItemVideo}> = function({attrs: {media}})
 	return {
 		oncreate (vnode) {
 			el = vnode.dom as HTMLVideoElement
-			window.addEventListener('resize', resize)
 			resize()
-			// Fade in when video ready
-			el.addEventListener('canplay', () => {
-				el.classList.add('show')
-			})
+			window.addEventListener('resize', resize)
 		},
 		onremove() {
 			window.removeEventListener('resize', resize)
 		},
-		view ({attrs: {media}}) {
+		view() {
 			return m('video.video', {
 				src: media.url,
 				autoplay: true,
 				controls: true,
 				loop: true,
 				playsinline: true,
-				onclick: (e: MouseEvent & {redraw?: boolean}) => {
+				oncanplay (e: Event & {redraw?: false}) {
+					const vid = e.currentTarget as HTMLVideoElement
+					// Use size from video
+					width = vid.videoWidth
+					height = vid.videoHeight
+					resize()
+					vid.classList.add('show')
+				},
+				onclick (e: MouseEvent & {redraw?: boolean}) {
 					e.stopPropagation()
 					e.redraw = false
 					window.history.back()
