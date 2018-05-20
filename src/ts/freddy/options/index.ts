@@ -1,7 +1,7 @@
 import * as m from 'mithril'
 import menuContent from '../../models/menu'
 import {options, THEMES, Preferences, setPref, reset as resetOptions} from '../../models/options'
-import logo from '../logo'
+import {logo} from '../svg'
 import renderSubredditList from './subreddit-list'
 import subredditAdd from './subreddit-add'
 import renderPrefCheck from './pref-check'

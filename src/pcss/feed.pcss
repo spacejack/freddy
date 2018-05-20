@@ -40,11 +40,22 @@
 			float: left;
 			margin-right: 0.5em;
 			margin-top: 0.73em;
-			cursor: pointer;
 			width: 2.5em;
 			height: 2.5em;
 			transition: opacity .25s ease-in-out;
 			opacity: 0;
+			background-size: cover;
+			background-position: center;
+			cursor: pointer;
+
+			& svg {
+				margin: 12.5% 0 0 12.5%;
+				width: 75%;
+				height: 75%;
+				opacity: 0.6;
+				user-select: none;
+				-webkit-user-drag: none;
+			}
 		}
 		& .thumb.show {
 			opacity: 1;
