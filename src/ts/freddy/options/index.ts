@@ -11,7 +11,7 @@ function render (prefs: Preferences, subreddits: string[]) {
 	return m('.panel.panel-options',
 		m('.panel-head',
 			m('div', {style: {display: 'inlineBlock'}},
-				logo,
+				logo(),
 				m('span', "Freddy")
 			)
 		),

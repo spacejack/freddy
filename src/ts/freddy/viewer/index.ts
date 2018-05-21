@@ -1,5 +1,5 @@
 import * as m from 'mithril'
-import {readyDom, transitionPromise} from '../../lib/html'
+import {triggerTransition, transitionPromise} from '../../lib/html'
 import viewerItem from '../../models/viewer'
 import {ItemImage, ItemVideo} from '../../models/feed'
 import image from './image'
@@ -25,14 +25,12 @@ const viewer: m.FactoryComponent = function() {
 
 		oncreate ({dom}) {
 			// Fade in bg
-			readyDom(dom)
-			dom.classList.add('show')
+			triggerTransition(dom, 'show')
 		},
 
 		onbeforeremove ({dom}) {
 			// Fade out viewer (and contents) on close
-			dom.classList.remove('show')
-			return transitionPromise(dom)
+			return transitionPromise(dom, 'show')
 		},
 
 		view() {

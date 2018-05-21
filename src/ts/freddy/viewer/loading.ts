@@ -18,9 +18,8 @@ const loading: m.FactoryComponent = function() {
 				timer = undefined
 				return Promise.resolve()
 			}
-			// Allow spinner to fade out
-			dom.classList.remove('show')
-			return transitionPromise(dom)
+			// Fade out spinner
+			return transitionPromise(dom, 'show')
 		},
 		view() {
 			return m('.loading',

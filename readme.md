@@ -17,7 +17,7 @@ Freddy uses [Mithril.js](https://mithril.js.org/) and is written in Typescript.
 * **VS Code**
 	- **tslint** extension
 	- **stylelint** extension
-	- **postcss-sugarss-language** extension
+	- **language-postcss** extension
 	- **editorconfig** extension
 
 ## Serve, watch:

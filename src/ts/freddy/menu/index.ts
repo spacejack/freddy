@@ -1,19 +1,17 @@
 import * as m from 'mithril'
+import {triggerTransition, transitionPromise} from '../../lib/html'
 import wait from '../../lib/wait'
 import menuContent from '../../models/menu'
 
 export default {
 	oncreate ({dom}) {
 		// Fade-in menu
-		wait(1).then(() => {dom.classList.add('show')})
+		triggerTransition(dom, 'show')
 	},
 
 	onbeforeremove ({dom}) {
 		// Fade out menu on close
-		dom.classList.remove('show')
-		return new Promise(resolve => {
-			dom.addEventListener('transitionend', resolve)
-		})
+		return transitionPromise(dom, 'show')
 	},
 
 	view() {

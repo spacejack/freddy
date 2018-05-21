@@ -9,7 +9,7 @@ export default function render() {
 			m('strong', "Freddy."),
 			" A fast Reddit reader."
 		),
-		m('p.small', "© 2016-2017 By Mike Linkovich"),
+		m('p.small', "© 2016-2018 By Mike Linkovich"),
 		m('p', {style: {paddingTop: '0.5em'}},
 			m('a', isStandaloneIOS
 				? {

@@ -1,4 +1,5 @@
 import * as m from 'mithril'
+import {triggerTransition} from '../../lib/html'
 import {ItemImage} from '../../models/feed'
 
 export interface Attrs {
@@ -13,7 +14,8 @@ export default {
 			src: media.url,
 			touchAction: 'none',
 			onload (e: Event) {
-				(e.currentTarget as HTMLImageElement).classList.add('show')
+				//(e.currentTarget as HTMLImageElement).classList.add('show')
+				triggerTransition(e.currentTarget as Element, 'show')
 				onLoad && onLoad()
 			},
 			onclick (e: MouseEvent & {redraw?: boolean}) {
