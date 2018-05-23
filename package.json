@@ -43,7 +43,7 @@
     "tsify": "^4.0.0",
     "tslint": "4.5.1",
     "typescript": "^2.8.3",
-    "uglify-js": "^3.3.26"
+    "uglify-js": "^3.3.27"
   },
   "dependencies": {
     "fastclick": "^1.0.6",
